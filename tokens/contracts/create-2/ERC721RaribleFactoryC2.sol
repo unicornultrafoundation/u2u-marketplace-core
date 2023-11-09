@@ -19,6 +19,7 @@ contract ERC721RaribleFactoryC2 is Ownable {
     address lazyTransferProxy;
 
     event Create721RaribleProxy(address proxy);
+    event Create721CollectionInfo(string, string, string, string, uint, address);
     event Create721RaribleUserProxy(address proxy);
 
     constructor(address _beacon, address _transferProxy, address _lazyTransferProxy) {

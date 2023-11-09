@@ -8,3 +8,5 @@ dist
 types/**/*.ts
 **/types/**/*.ts
 **/types
+build
+.openzeppelin

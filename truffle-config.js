@@ -8,7 +8,7 @@ function getConfigPath() {
   if (configPath) {
     return configPath;
   } else {
-    return path.join(os.homedir(),  ".ethereum");
+    return path.join(__dirname,  ".ethereum");
   }
 }
 
@@ -19,12 +19,15 @@ function createNetwork(name) {
     return {
       provider: () => {
         const { estimate } = require("@rarible/estimate-middleware")
+        console.log(json)
+        console.log('aaaa')
         if (json.path != null) {
           const { createProvider: createTrezorProvider } = require("@rarible/trezor-provider")
           const provider = createTrezorProvider({ url: json.url, path: json.path, chainId: json.network_id })
           provider.send = provider.sendAsync
           return provider
         } else {
+          console.log('bbbb')
           return createProvider(json.address, json.key, json.url)
         }
       },
@@ -36,6 +39,7 @@ function createNetwork(name) {
       networkCheckTimeout: 500000
     };
   } catch (e) {
+    console.log(e)
     return null;
   }
 }
@@ -136,38 +140,53 @@ function getScanApiKey(name) {
   return apiKey;
 }
 
-module.exports = {
-  api_keys: {
-    etherscan: getScanApiKey('etherscan'),
-    polygonscan: getScanApiKey('polygonscan'),
-    polygon_mumbai: getScanApiKey('polygonscan'),
-    optimistic_etherscan: getScanApiKey('optimisticscan')
-  },
+console.log('===============', createNetwork("u2uTestnet"));
 
-  plugins: [
-    'truffle-plugin-verify'
-  ],
+module.exports = {
+  // api_keys: {
+  //   etherscan: getScanApiKey('etherscan'),
+  //   polygonscan: getScanApiKey('polygonscan'),
+  //   polygon_mumbai: getScanApiKey('polygonscan'),
+  //   optimistic_etherscan: getScanApiKey('optimisticscan')
+  // },
+
+  // plugins: [
+  //   'truffle-plugin-verify'
+  // ],
 
   networks: {
-    e2e: createNetwork("e2e"),
-    ops: createNetwork("ops"),
-    ropsten: createNetwork("ropsten"),
-    mainnet: createNetwork("mainnet"),
-    rinkeby: createNetwork("rinkeby"),
-    rinkeby2: createNetwork("rinkeby2"),
-    polygon_mumbai: createNetwork("polygon_mumbai"),
-    polygon_mainnet: createNetwork("polygon_mainnet"),
-    polygon_dev: createNetwork("polygon_dev"),
-    dev: createNetwork("dev"),
-    goerli: createNetwork("goerli"),
-    staging: createNetwork("staging"),
-    polygon_staging: createNetwork("polygon_staging"),
-    optimism_mainnet: createNetwork("optimism_mainnet"),
-    optimism_goerli: createNetwork("optimism_goerli"),
-    mantle_testnet: createNetworkMantelTest("mantle_testnet"),
-    mantle_mainnet: createNetworkMantelTest("mantle_mainnet"),
-    arbitrum_goerli: createNetwork("arbitrum_goerli"),
-    zkatana_testnet: createNetworkZKatanaTest("zkatana_testnet"),
+    // e2e: createNetwork("e2e"),
+    // ops: createNetwork("ops"),
+    // ropsten: createNetwork("ropsten"),
+    // mainnet: createNetwork("mainnet"),
+    // rinkeby: createNetwork("rinkeby"),
+    // rinkeby2: createNetwork("rinkeby2"),
+    // polygon_mumbai: createNetwork("polygon_mumbai"),
+    // polygon_mainnet: createNetwork("polygon_mainnet"),
+    // polygon_dev: createNetwork("polygon_dev"),
+    // dev: createNetwork("dev"),
+    // goerli: createNetwork("goerli"),
+    // staging: createNetwork("staging"),
+    // polygon_staging: createNetwork("polygon_staging"),
+    // optimism_mainnet: createNetwork("optimism_mainnet"),
+    // optimism_goerli: createNetwork("optimism_goerli"),
+    // mantle_testnet: createNetworkMantelTest("mantle_testnet"),
+    // mantle_mainnet: createNetworkMantelTest("mantle_mainnet"),
+    // arbitrum_goerli: createNetwork("arbitrum_goerli"),
+    // zkatana_testnet: createNetworkZKatanaTest("zkatana_testnet"),
+    // mumbai: {
+    //   url: "https://rpc-mumbai.maticvigil.com",     // Localhost
+    //   network_id: 80001,       // Match any network ID
+    //   from: "0x09335570E84602d4c7354E7Ed5e377a4FEeC1D8D", // The address you want to deploy from
+    //   privateKey: "5bc10fabeaa3b27c8e7d95c62eaa75c1bbb179a0ec4efa385b61546bdbbb4deb", // The private key for the above address
+    // },
+    u2uTestnet: createNetwork("u2uTestnet")
+    // u2uTestnet: {
+    //   url: "https://rpc-nebulas-testnet.uniultra.xyz",     // Localhost
+    //   network_id: "*",       // Match any network ID
+    //   from: "0x09335570E84602d4c7354E7Ed5e377a4FEeC1D8D", // The address you want to deploy from
+    //   privateKey: "5bc10fabeaa3b27c8e7d95c62eaa75c1bbb179a0ec4efa385b61546bdbbb4deb", // The private key for the above address
+    // }
   },
 
   compilers: {
