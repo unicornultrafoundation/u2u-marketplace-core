@@ -10,3 +10,4 @@ types/**/*.ts
 **/types
 build
 .openzeppelin
+.ethereum
