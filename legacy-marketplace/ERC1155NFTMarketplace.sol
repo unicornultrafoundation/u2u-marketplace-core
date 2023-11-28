@@ -13,6 +13,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.0
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.0/contracts/token/ERC1155/utils/ERC1155Holder.sol";
 // import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.0/contracts/access/Ownable.sol";
 import "./ERC721NFTFeeDistributor.sol";
+import "./interfaces/IWETH.sol";
 
 contract ERC1155NFTMarket is
     ReentrancyGuard,
@@ -94,9 +95,18 @@ contract ERC1155NFTMarket is
         _;
     }
 
-    constructor(address _feeRecipient, uint256 _feePercent)
+    address public immutable WETH;
+
+    constructor(address _feeRecipient, uint256 _feePercent, address _WETHAddress)
         ERC721NFTFeeDistributor(_feeRecipient, _feePercent)
-    {}
+    {
+        WETH = _WETHAddress;
+    }
+
+
+    // constructor(address _feeRecipient, uint256 _feePercent)
+    //     ERC721NFTFeeDistributor(_feeRecipient, _feePercent)
+    // {}
 
     /**
      * @notice Create ask order
@@ -148,6 +158,120 @@ contract ERC1155NFTMarket is
             _pricePerUnit
         );
     }
+
+    /**
+ * @notice Buy nft using ETH
+ * @param askId: id of ask
+ * @param quantity: quantity to buy
+ */
+    function buyUsingEth(uint256 askId, uint256 quantity)
+    external
+    payable
+    nonReentrant
+    notContract
+    {
+        require(
+            quantity > 0,
+            "ERC1155NFTMarket: quantity must be greater than zero"
+        );
+        require(
+            asks[askId].quantity >= quantity,
+            "ERC1155NFTMarket: quantity is not enough"
+        );
+        Ask storage ask = asks[askId];
+        require(
+            ask.quoteToken == address(WETH), // Check if the quote token is WETH
+            "ERC1155NFTMarket: ask is not in WETH"
+        );
+        uint256 price = ask.pricePerUnit.mul(quantity);
+        require(
+            msg.value >= price,
+            "ERC1155NFTMarket: insufficient ETH sent"
+        );
+
+        // Convert ETH to WETH
+        IWETH(WETH).deposit{value: msg.value}();
+
+        ask.quantity = ask.quantity.sub(quantity);
+
+        uint256 fees = _distributeFees(ask.nft, address(WETH), price);
+        uint256 netPrice = price.sub(fees);
+
+        // Transfer net price to the seller
+        IWETH(WETH).transfer(ask.seller, netPrice);
+
+        // Refund excess WETH to the buyer
+        if (msg.value > price) {
+            IWETH(WETH).transfer(msg.sender, msg.value.sub(price));
+        }
+
+        IERC1155(ask.nft).safeTransferFrom(
+            address(this),
+            msg.sender,
+            ask.tokenId,
+            quantity,
+            ""
+        );
+
+        if (ask.quantity == 0) {
+            delete asks[askId];
+        }
+
+        emit Buy(askId, msg.sender, quantity, price, netPrice);
+    }
+
+
+    /**
+    * @notice Create offer using ETH
+    * @param _nft: address of NFT contract
+    * @param _tokenId: token id of NFT
+    * @param _quantity: quantity to offer
+    */
+    function createOfferUsingEth(
+    address _nft,
+    uint256 _tokenId,
+    uint256 _quantity
+    )
+        external
+        payable
+        nonReentrant
+        notContract
+    {
+        require(
+            _quantity > 0,
+            "ERC1155NFTMarket: _quantity must be greater than zero"
+        );
+        uint256 pricePerUnit = msg.value.div(_quantity);
+        require(
+            pricePerUnit > 0,
+            "ERC1155NFTMarket: price per unit must be greater than zero"
+        );
+
+        // Convert ETH to WETH
+        IWETH(WETH).deposit{value: msg.value}();
+
+        _offerIds.increment();
+        offers[_offerIds.current()] = Offer({
+            buyer: msg.sender,
+            nft: _nft,
+            tokenId: _tokenId,
+            quoteToken: address(WETH), // Use WETH as the quote token
+            pricePerUnit: pricePerUnit,
+            quantity: _quantity
+        });
+
+        emit OfferNew(
+            _offerIds.current(),
+            msg.sender,
+            _nft,
+            _tokenId,
+            _quantity,
+            address(WETH),
+            pricePerUnit
+        );
+    }
+
+
 
     /**
      * @notice Cancel Ask
