@@ -5,7 +5,7 @@ pragma abicoder v2;
 
 import "./ERC721Base.sol";
 
-contract ERC721Rarible is ERC721Base {
+contract ERC721U2U is ERC721Base {
 
     event CreateERC721Rarible(address owner, string name, string symbol);
 

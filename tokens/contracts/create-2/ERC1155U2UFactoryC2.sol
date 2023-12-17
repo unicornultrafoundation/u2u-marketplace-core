@@ -3,7 +3,7 @@
 pragma solidity >=0.6.2 <0.8.0;
 pragma abicoder v2;
 
-import "../erc-1155/ERC1155Rarible.sol";
+import "../erc-1155/ERC1155U2U.sol";
 import "@openzeppelin/contracts/proxy/BeaconProxy.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * The beacon should be initialized before call ERC1155RaribleFactoryC2 constructor.
  *
  */
-contract ERC1155RaribleFactoryC2 is Ownable{
+contract ERC1155U2UFactoryC2 is Ownable{
     address public beacon;
     address transferProxy;
     address lazyTransferProxy;
@@ -30,7 +30,7 @@ contract ERC1155RaribleFactoryC2 is Ownable{
     function createToken(string memory _name, string memory _symbol, string memory baseURI, string memory contractURI, uint salt) external {        
         address beaconProxy = deployProxy(getData(_name, _symbol, baseURI, contractURI), salt);
 
-        ERC1155Rarible token = ERC1155Rarible(beaconProxy);
+        ERC1155U2U token = ERC1155U2U(beaconProxy);
         token.transferOwnership(_msgSender());
         emit Create1155RaribleProxy(beaconProxy);
     }
@@ -38,7 +38,7 @@ contract ERC1155RaribleFactoryC2 is Ownable{
     function createToken(string memory _name, string memory _symbol, string memory baseURI, string memory contractURI, address[] memory operators, uint salt) external {
         address beaconProxy = deployProxy(getData(_name, _symbol, baseURI, contractURI, operators), salt);
 
-        ERC1155Rarible token = ERC1155Rarible(address(beaconProxy));
+        ERC1155U2U token = ERC1155U2U(address(beaconProxy));
         token.transferOwnership(_msgSender());
         emit Create1155RaribleUserProxy(beaconProxy);
     }
@@ -75,7 +75,7 @@ contract ERC1155RaribleFactoryC2 is Ownable{
     }
 
     function getData(string memory _name, string memory _symbol, string memory baseURI, string memory contractURI) view internal returns(bytes memory){
-        return abi.encodeWithSelector(ERC1155Rarible(0).__ERC1155Rarible_init.selector, _name, _symbol, baseURI, contractURI, transferProxy, lazyTransferProxy);
+        return abi.encodeWithSelector(ERC1155U2U(0).__ERC1155Rarible_init.selector, _name, _symbol, baseURI, contractURI, transferProxy, lazyTransferProxy);
     }
 
     //returns address that contract with such arguments will be deployed on
@@ -94,7 +94,7 @@ contract ERC1155RaribleFactoryC2 is Ownable{
     }
 
     function getData(string memory _name, string memory _symbol, string memory baseURI, string memory contractURI, address[] memory operators) view internal returns(bytes memory){
-        return abi.encodeWithSelector(ERC1155Rarible(0).__ERC1155RaribleUser_init.selector, _name, _symbol, baseURI, contractURI, operators, transferProxy, lazyTransferProxy);
+        return abi.encodeWithSelector(ERC1155U2U(0).__ERC1155RaribleUser_init.selector, _name, _symbol, baseURI, contractURI, operators, transferProxy, lazyTransferProxy);
     }
 
 }

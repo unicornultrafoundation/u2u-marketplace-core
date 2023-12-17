@@ -7,7 +7,7 @@ import "./ERC1155Base.sol";
 import "../IsPrivateCollection.sol";
 import "../access/MinterAccessControl.sol";
 
-contract ERC1155Rarible is ERC1155Base, IsPrivateCollection, MinterAccessControl {
+contract ERC1155U2U is ERC1155Base, IsPrivateCollection, MinterAccessControl {
     event CreateERC1155Rarible(address owner, string name, string symbol);
     event CreateERC1155RaribleUser(address owner, string name, string symbol);
 

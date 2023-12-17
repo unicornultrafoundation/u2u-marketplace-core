@@ -8,7 +8,7 @@ import "../ERC721BaseMinimal.sol";
 import "../../IsPrivateCollection.sol";
 import "../../access/MinterAccessControl.sol";
 
-contract ERC721RaribleMeta is ERC721BaseMinimal, IsPrivateCollection, MinterAccessControl, EIP712MetaTransaction {
+contract ERC721U2UMeta is ERC721BaseMinimal, IsPrivateCollection, MinterAccessControl, EIP712MetaTransaction {
     event CreateERC721Rarible(address owner, string name, string symbol);
     event CreateERC721RaribleUser(address owner, string name, string symbol);
 
