@@ -30605,11 +30605,11 @@
     "2484": {
       "events": {},
       "links": {},
-      "address": "0x0Ea8c81fCb63aFa2de23Ab3cb59E60e7CF955b7b"
+      "address": "0x90ee7e0fdecc46EAE7D4619eBb0769E926D9dA20"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-09T07:28:43.463Z",
+  "updatedAt": "2023-12-17T17:49:44.323Z",
   "networkType": "ethereum",
   "devdoc": {
     "events": {

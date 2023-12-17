@@ -2017,12 +2017,12 @@
         }
       },
       "links": {},
-      "address": "0x8095E7A46C00e5b0BEeD801cFdC0b6496Aa7A70E",
-      "transactionHash": "0x1a0137fbc4dfbb33e848cb6e588ca069f01d0a23d43bbc6dddf5023f8e4e0740"
+      "address": "0x2e371553030dd051A6D5FF4dbc326110D02646BB",
+      "transactionHash": "0xe6659b98436beb214cabae41567b7e8400b35dea47ba913964f1451862f1de4b"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-09T07:28:59.644Z",
+  "updatedAt": "2023-12-17T17:49:36.019Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

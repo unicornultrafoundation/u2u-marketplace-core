@@ -25744,11 +25744,11 @@
         }
       },
       "links": {},
-      "address": "0xd8c5F75Aa01dC3db284F9F3C697C76C0D9DeB3A3"
+      "address": "0xf2d627072d626c7C1E51dadEF521Bb2315926632"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-09T07:29:10.471Z",
+  "updatedAt": "2023-12-17T17:49:52.564Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
