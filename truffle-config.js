@@ -15,19 +15,19 @@ function getConfigPath() {
 function createNetwork(name) {
   try {
     var json = require(path.join(getConfigPath(), name + ".json"));
-    var gasPrice = json.gasPrice != null ? json.gasPrice + "000000000" : 2000000000;
+    var gasPrice = json.gasPrice != null ? json.gasPrice + "000000000" : 100000000000;
     return {
       provider: () => {
         const { estimate } = require("@rarible/estimate-middleware")
-        console.log(json)
-        console.log('aaaa')
+        // console.log(json)
+        // console.log('aaaa')
         if (json.path != null) {
           const { createProvider: createTrezorProvider } = require("@rarible/trezor-provider")
           const provider = createTrezorProvider({ url: json.url, path: json.path, chainId: json.network_id })
           provider.send = provider.sendAsync
           return provider
         } else {
-          console.log('bbbb')
+          // console.log('bbbb')
           return createProvider(json.address, json.key, json.url)
         }
       },
@@ -140,7 +140,7 @@ function getScanApiKey(name) {
   return apiKey;
 }
 
-console.log('===============', createNetwork("u2uTestnet"));
+console.log('===============', createNetwork("u2u"));
 
 module.exports = {
   // api_keys: {
@@ -180,7 +180,8 @@ module.exports = {
     //   from: "0x09335570E84602d4c7354E7Ed5e377a4FEeC1D8D", // The address you want to deploy from
     //   privateKey: "5bc10fabeaa3b27c8e7d95c62eaa75c1bbb179a0ec4efa385b61546bdbbb4deb", // The private key for the above address
     // },
-    u2uTestnet: createNetwork("u2uTestnet")
+    u2uTestnet: createNetwork("u2uTestnet"),
+    u2u: createNetwork("u2u")
     // u2uTestnet: {
     //   url: "https://rpc-nebulas-testnet.uniultra.xyz",     // Localhost
     //   network_id: "*",       // Match any network ID

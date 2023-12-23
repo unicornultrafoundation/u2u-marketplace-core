@@ -50863,11 +50863,11 @@
     "2484": {
       "events": {},
       "links": {},
-      "address": "0xe6fF4E6F896015C5e2eFe4bd2262044aB2a9148A"
+      "address": "0x87D13c47dE6283303fc1D7bCfD86B5eD405eF037"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-12-17T17:49:35.981Z",
+  "updatedAt": "2023-12-21T08:38:55.024Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "contract to create and interact with auctions",

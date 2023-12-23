@@ -3869,12 +3869,12 @@
     "2484": {
       "events": {},
       "links": {},
-      "address": "0x30D2773c28b087ec5b7F39D4eD29D3887e810014",
-      "transactionHash": "0xf4fb79d6819c6e541d3b873381981f1c98c14530c946c6ccc9dc0a5a9a6ca167"
+      "address": "0x4D408443D48F4144638B0a63699486e61d04096F",
+      "transactionHash": "0x14663a6c5829ead0190c194fa97f9b48e52d0c57048bb7eb59f0885f1b019dc4"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-12-17T17:49:36.003Z",
+  "updatedAt": "2023-12-21T08:38:55.041Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

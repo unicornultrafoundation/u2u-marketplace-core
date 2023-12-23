@@ -50409,11 +50409,11 @@
     "2484": {
       "events": {},
       "links": {},
-      "address": "0xe7e2bA271a4b0db8676C2F252BcD0da0e823d1E0"
+      "address": "0xdf9cBA3246c5Ef76fD8C330E3eb7dfba4BEb896C"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-12-17T17:49:35.942Z",
+  "updatedAt": "2023-12-21T08:38:55.002Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "contract to create and interact with auctions",

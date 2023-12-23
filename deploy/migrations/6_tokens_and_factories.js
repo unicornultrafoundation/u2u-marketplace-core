@@ -19,6 +19,8 @@ const ERC1155LazyMintTransferProxy = artifacts.require('ERC1155LazyMintTransferP
 const ERC1155U2UMeta = artifacts.require('ERC1155U2UMeta');
 
 module.exports = async function (deployer, network) {
+  try{
+  console.log('network nè: ', network)
   const transferProxy = (await TransferProxy.deployed()).address;
   const erc721LazyMintTransferProxy = (await ERC721LazyMintTransferProxy.deployed()).address;
   const erc1155LazyMintTransferProxy = (await ERC1155LazyMintTransferProxy.deployed()).address;
@@ -34,7 +36,7 @@ module.exports = async function (deployer, network) {
   }
 
   //deploying erc721 proxy
-  const erc721Proxy = await deployProxy(ERC721U2U, ["U2U712Base", "U2U712Base", "ipfs:/", "", transferProxy, erc721LazyMintTransferProxy], { deployer, initializer: '__ERC721Rarible_init' });
+  const erc721Proxy = await deployProxy(ERC721U2U, ["U2U721Base", "U2U721Base", "ipfs://", "", transferProxy, erc721LazyMintTransferProxy], { deployer, initializer: '__ERC721Rarible_init' });
   console.log("deployed erc721 at", erc721Proxy.address)
 
   //deploying erc712 factory
@@ -43,12 +45,15 @@ module.exports = async function (deployer, network) {
 
   //deploying ERC721RaribleBeacon
   const beacon721 = await deployer.deploy(ERC721U2UBeacon, erc721, { gas: 1000000 });
+} catch(err) {
+  console.error(err)
+}
 
 };
 
 async function deployERC1155(erc1155toDeploy, beaconToDeploy, transferProxy, erc1155LazyMintTransferProxy, deployer, network) {
   //deploying erc1155 proxy
-  const erc1155Proxy = await deployProxy(erc1155toDeploy, ["U2U1155Base", "U2U1155Base", "ipfs:/", "", transferProxy, erc1155LazyMintTransferProxy], { deployer, initializer: '__ERC1155Rarible_init' });
+  const erc1155Proxy = await deployProxy(erc1155toDeploy, ["U2U1155Base", "U2U1155Base", "ipfs://", "", transferProxy, erc1155LazyMintTransferProxy], { deployer, initializer: '__ERC1155Rarible_init' });
   console.log("deployed erc1155 at", erc1155Proxy.address)
 
   //deploying erc1155 factory
