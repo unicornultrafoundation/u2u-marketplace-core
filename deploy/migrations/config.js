@@ -121,6 +121,14 @@ const u2uTestnet = {
   deploy_test_erc20: true
 }
 
+const u2u = {
+  communityWallet: "0x2743eEC46576f76f47334569074242F3D9a90B44",
+  deploy_CryptoPunks: true,
+  deploy_meta: false,
+  deploy_non_meta: true,
+  deploy_test_erc20: true
+}
+
 const optimism_mainnet = {
   communityWallet: "0x1cf0df2a5a20cd61d68d4489eebbf85b8d39e18a",
   deploy_CryptoPunks: false,
@@ -189,6 +197,7 @@ let settings = {
   "mantle_mainnet": mantle_mainnet,
   "arbitrum_goerli": arbitrum_goerli,
   "u2uTestnet": u2uTestnet,
+  "u2u": u2u,
 };
 
 function getSettings(network) {

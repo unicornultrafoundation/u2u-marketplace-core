@@ -1535,7 +1535,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-09T07:25:30.790Z",
+  "updatedAt": "2023-12-17T17:33:48.583Z",
   "devdoc": {
     "details": "library that works with data field of Bid struct",
     "kind": "dev",

@@ -5966,12 +5966,12 @@
     "2484": {
       "events": {},
       "links": {},
-      "address": "0x685C45c9F1345F1120Ed9c707ebB5b03AA05B801",
-      "transactionHash": "0x44f7e074cd279bb476a07d7b6be8bbafd03228b7008ecf1da986123381c56789"
+      "address": "0xEA665C703A4790a2f32FfBabC51527d4f018c3C0",
+      "transactionHash": "0x70e385ea919fd6f3b7ef5ade2d29a21e60a63bfba5e54663db59a84ed77162a1"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-09T07:29:10.462Z",
+  "updatedAt": "2023-12-21T08:38:07.412Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

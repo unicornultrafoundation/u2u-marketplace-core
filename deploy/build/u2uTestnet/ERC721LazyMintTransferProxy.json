@@ -10730,12 +10730,12 @@
         }
       },
       "links": {},
-      "address": "0x994FED0EFe28a9b4643dD819e22B00151C4Afd5a",
-      "transactionHash": "0x5dddbf7f84ad0abcb2768724eee086be45ef40c9db6066f73ac2719d8f3115c2"
+      "address": "0xc23C6253E40D5526c8abFf96E343a95CF7D9E944",
+      "transactionHash": "0x50a87d75001a6004642e146d82104399eeb7ebbef452b6cca4a15da0f17e5ef2"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-09T07:28:23.673Z",
+  "updatedAt": "2023-12-21T08:37:19.255Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

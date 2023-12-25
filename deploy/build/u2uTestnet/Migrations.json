@@ -883,12 +883,12 @@
     "2484": {
       "events": {},
       "links": {},
-      "address": "0x9f81984e2F5F1a7f2768E2ac40baDA77eBf50611",
-      "transactionHash": "0xe92616fe21a0711ce5cee1306ff60157b36f088c79c18912340c12e93d1aba17"
+      "address": "0xA1Ce1F8a3059f9eB3Cdf378aa8603743D8E658c8",
+      "transactionHash": "0x68a9b5ec149b317a613fba2ae64a372bb571cd35253c87f4e297a0f33c0a17d2"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-11-09T07:29:10.488Z",
+  "updatedAt": "2023-12-21T08:39:36.590Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
